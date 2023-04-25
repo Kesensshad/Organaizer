@@ -1,7 +1,7 @@
 <?php 
 session_start();
 require_once('../Manipulators/TaskManagment.php');
-// require_once('../Manipulators/TaskManipulator.php');
+// require_once('../Manipulators/TaskCreate.php');
 $_SESSION['user'] = 'test';
 ?>
 <!DOCTYPE html>
@@ -11,16 +11,22 @@ $_SESSION['user'] = 'test';
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Home</title>
 </head>
-<body>
-<!-- 	<form action = "../Manipulators/TaskManipulator.php" method="post">
+<body><!-- Home page -->
+	<form action = "../Manipulators/TaskCreate.php" method="post">
 		<p><input type="text" placeholder="status" name="status" required></p>
 		<p><input type="text" placeholder="priority" name="priority" required></p>
-		<p><input type="text" placeholder="deadline" name="deadline" required></p>
+		<p><input type="date" placeholder="deadline" name="deadline" required></p>
 		<p><input type="text" placeholder="title" name="title" required></p>
-		<input type="hidden" name="actionWithATask" value="create">
-		<p><input type="submit" value="Create"></p>
-	</form> -->
-	<!-- Home page -->
-	<?php output_of_tasks(); ?>
+		<p><input type="submit" name=send value="Create"></p>
+	</form>
+	
+	<script type="text/javascript">
+		function sendForm(e){ 
+			 alert(<?php echo $message; ?>);
+		}
+		var sendButton = document.search.send;
+		sendButton.addEventListener("click", sendForm);
+	</script>
+	<center><?php output_of_tasks(); ?></center>
 </body>
 </html>

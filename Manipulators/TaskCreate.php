@@ -2,46 +2,36 @@
 session_start();
 
 
+if (isset($_POST['status']) && isset($_POST['priority']) && isset($_POST['deadline']) && isset($_POST['title'])){
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$dbname = "organaizer";
 
-if (isset($_POST['status']) && isset($_POST['task_priority']) && isset($_POST['deadline']) && isset($_POST['title']));
-{
-	$conn = new mysqli("localhost", "root", "", "organaizer");
-	if($conn->connect_error){
-		die("Ошибка: " . $conn->connect_error);
+	// Создание соединения с базой данных
+	$conn = new mysqli($servername, $username, $password, $dbname);
+
+	// Проверка соединения на ошибки
+	if ($conn->connect_error) {
+	    die("Ошибка подключения: " . $conn->connect_error);
+	} 
+
+	// Получение данных из формы
+	$status = $_POST['status'];
+	$priority = $_POST['priority'];
+	$deadline = $_POST['deadline'];
+	$title = $_POST['title'];
+	$create_by = $_SESSION['user'];
+
+	$sql = "INSERT INTO task (task_status, task_priority, task_deadline, task_title, create_by, create_at) VALUES ('$status', '$priority', '$deadline', '$title', '$create_by', NOW())";
+	echo $sql;
+
+	if ($conn->query($sql) === TRUE) {
+	    header("Location: ../view/Home.php");
+	} else {
+	    echo "Ошибка добавления кортежа: " . $conn->error;
 	}
-	$status = $conn->real_escape_string($_POST["status"]);
-	$priority = $conn->real_escape_string($_POST["task_priority"]);
-	$deadline = $conn->real_escape_string($_POST["deadline"]);
-	$title = $conn->real_escape_string($_POST["title"]);
-	$user = $conn->real_escape_string($_SESSION['user']);
-	$sql = "
-		INSERT INTO task (task_status, task_priority, task_deadline, task_title, create_by, create_at) 
-		VALUES ($status, $priority, $deadline, $title, $user, NOW())
-	";
-	// if($conn->query($sql)){
-	//     echo "Задача добавленна";
-	// } else {
-	//     echo "Ошибка: " . $conn->error;
-	// }
+
+	
 	$conn->close();
 }
-
-
-// <?php
-// if (isset($_POST["username"]) && isset($_POST["userage"])) {
-      
-//     $conn = new mysqli("localhost", "root", "", "testdb2");
-//     if($conn->connect_error){
-//         die("Ошибка: " . $conn->connect_error);
-//     }
-//     $name = $conn->real_escape_string($_POST["username"]);
-//     $age = $conn->real_escape_string($_POST["userage"]);
-    // $sql = "INSERT INTO Users (name, age) VALUES ('$name', $age)";
-//     if($conn->query($sql)){
-//         echo "Данные успешно добавлены";
-//     } else{
-//         echo "Ошибка: " . $conn->error;
-//     }
-//     $conn->close();
-// }
-// ?>

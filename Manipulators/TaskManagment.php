@@ -7,9 +7,9 @@ function output_of_tasks()
 	if($conn->connect_error){
 		die("Ошибка: " . $conn->connect_error);
 	}
-	$sql = "SELECT * FROM task";
+	$sql = "SELECT * FROM task WHERE create_by = '$_SESSION[user]'";
 	if($result = $conn->query($sql)){
-	    $rowsCount = $result->num_rows; // количество полученных строк
+	    // $rowsCount = $result->num_rows; // количество полученных строк
 	    echo '
 			<table>
 				<tr>

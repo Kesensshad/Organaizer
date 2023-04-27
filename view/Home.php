@@ -15,7 +15,11 @@ echo $_SESSION['user'];
 </head>
 <body><!-- Home page -->
 	<form action = "../Manipulators/TaskCreate.php" method="post">
-		<p><input type="text" placeholder="status" name="status" value="1"></p>
+		<select size="1" name="status">
+			<option value="1">Finished</option>
+			<option selected value="2">Not finished</option>
+			<option value="3">Delayed</option>
+		</select>
 		<p><input type="text" placeholder="priority" name="priority" value=""></p>
 		<p><input type="date" placeholder="deadline" name="deadline" value="2023-12-12" id="calendarForTasks"></p>
 		<p><input type="text" placeholder="title" name="title" required></p>

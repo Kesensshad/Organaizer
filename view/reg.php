@@ -1,8 +1,8 @@
 <?php session_start(); 
-	if ($_GET['message'] == "Password")
-		echo "<script>alert('Incorrect password!');</script>";
 	if ($_GET['message'] == "Exists")
-		echo "<script>alert('User does not exist!');</script>";
+		echo "<script>alert('User already exist!');</script>";
+	if ($_GET['message'] == "Password")
+		echo "<script>alert('Password mismatch!');</script>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,27 +11,31 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 	<script>
-		function showPassword() {
+		function showPasswords() {
 			var passwordField = document.getElementById("password");
+			var confirmPasswordField = document.getElementById("confirm");
 
 			if (passwordField.type === "password") {
 				passwordField.type = "text";
+				confirmPasswordField.type = "text";
 			} else {
 				passwordField.type = "password";
+				confirmPasswordField.type = "password";
 			}
 		}
 	</script>
 </head>
 <body>
-	<h1>Authorization</h1>
+	<h1>Registration</h1>
 	<form action="../Manipulators/UserManipulator.php" method="post">
 		<p><input type="text" placeholder="login" name="login" required /></p>
 		<p><input type="password" id="password" placeholder="password" name="password" required /></p>
-		<button type="button" onclick="showPassword()">Показать пароль</button>
-		<input type="hidden" name="userWants" value="auth">
+		<p><input type="password" id="confirm" placeholder="confirm" name="confirm" required /></p>
+		<button type="button" onclick="showPasswords()">Показать пароль</button>
+		<input type="hidden" name="userWants" value="reg">
 	    <input type="submit" value="Sign up">
 	</form>
 	
-	<a href="reg.php">Sign up</a>
+	<a href="auth.php">Sign in</a>
 </body>
 </html>

@@ -1,0 +1,4 @@
+Finished,	C,	2023-04-30,	Test
+Not finished,	A,	2023-04-28,	odapsfjmp
+Delayed,	,	2023-04-28,	ncalsfnlk
+Not finished,	,	2023-04-28,	anklfsna

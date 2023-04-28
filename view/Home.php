@@ -1,9 +1,11 @@
 <?php 
 session_start();
+if (isset($_POST['user']))
+	$_SESSION['user'] = $_POST['user'];
 if (!$_SESSION['user'])
 	header("Location: auth.php");
 require_once('../Manipulators/TaskManagment.php');
-echo $_SESSION['user'];
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -14,6 +16,12 @@ echo $_SESSION['user'];
 	
 </head>
 <body><!-- Home page -->
+	<?php echo $_SESSION['user']; 
+	echo "<form action='Home.php' method='post'>
+			<input type='hidden' name='user' value=''>
+			<input type='submit' value='Sign out'>
+		</form>
+	"?> 
 	<form action = "../Manipulators/TaskCreate.php" method="post">
 		<select size="1" name="status">
 			<option value="1">Finished</option>
@@ -33,6 +41,14 @@ echo $_SESSION['user'];
 		}
 		showCurrentDate();
 	</script>
+	<form action="../Manipulators/ExportTextFile.php" method="post">
+		<input type="hidden" name="export">
+		<input type="submit" value="Export">
+	</form>
+	<form action="../Manipulators/ImportTextFile.php" method="post" enctype="multipart/form-data">
+	    <input type="file" name="fileToImport">
+	    <input type="submit" name="import" value="Import">
+	</form>
 	<center><?php output_of_tasks(); ?></center>
 </body>
 </html>

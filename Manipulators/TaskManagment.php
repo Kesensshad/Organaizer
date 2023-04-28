@@ -7,7 +7,7 @@ function output_of_tasks()
 	if($conn->connect_error){
 		die("Connect error: " . $conn->connect_error);
 	}
-	$sql = "SELECT * FROM task WHERE create_by = '$_SESSION[user]'";
+	$sql = "SELECT * FROM tasks WHERE create_by = '$_SESSION[user]'";
 	if($result = $conn->query($sql)){
 	    echo '
 			<table>

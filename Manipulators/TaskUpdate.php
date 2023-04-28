@@ -12,7 +12,7 @@ if (isset($_POST['task_id']))
 	    die("Connect error: " . $conn->connect_error);
 	} 
 	$id = $_POST['task_id'];
-	$sql = "SELECT * FROM task WHERE task_id = $id";
+	$sql = "SELECT * FROM tasks WHERE task_id = $id";
 	// echo $sql;
 	$result = mysqli_query($conn, $sql);
 	foreach ($result as $row)
@@ -38,7 +38,11 @@ if (isset($_POST['task_id']))
 	<center>
 		<?php 
 		echo "<form action = 'TaskUpdate.php' method='post'>";
-		echo	"<p><input type='text' placeholder='status' name='status' value=$status></p>";
+		echo '<select size="1" name="status">
+				<option value="1">Finished</option>
+				<option selected value="2">Not finished</option>
+				<option value="3">Delayed</option>
+			</select>';
 		echo	"<p><input type='text' placeholder='priority' name='priority' value=$priority></p>";
 		echo	"<p><input type='date' placeholder='deadline' name='deadline' value=$deadline></p>";
 		echo	"<p><input type='text' placeholder='title' name='title' value=$title required></p>";
@@ -59,13 +63,12 @@ if(isset($_POST['updateTask'])){
 		$update_deadline = $_POST['deadline'];
 		$update_title = $_POST['title'];
 
-		$sql = "UPDATE task SET 
+		$sql = "UPDATE tasks SET 
 		task_status = $update_status, 
 		task_priority = '$update_priority', 
 		task_deadline = '$update_deadline', 
 		task_title = '$update_title' 
 		WHERE task_id = $id";
-		// echo $sql;
 		if ($conn->query($sql) === TRUE) {
 		    header("Location: ../view/Home.php");
 		} else {

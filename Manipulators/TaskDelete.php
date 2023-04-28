@@ -15,7 +15,7 @@ if (isset($_POST['task_id'])){
 
 	$id = $_POST['task_id'];
 
-	$sql = "DELETE FROM task WHERE task_id = $id";
+	$sql = "DELETE FROM tasks WHERE task_id = $id";
 
 	if ($conn->query($sql) === TRUE) {
 	    header("Location: ../view/Home.php");

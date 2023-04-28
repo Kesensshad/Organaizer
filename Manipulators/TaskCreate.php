@@ -20,7 +20,7 @@ if (isset($_POST['status']) && isset($_POST['priority']) && isset($_POST['deadli
 	$title = $_POST['title'];
 	$create_by = $_SESSION['user'];
 
-	$sql = "INSERT INTO task (task_status, task_priority, task_deadline, task_title, create_by, create_at) VALUES ('$status', '$priority', '$deadline', '$title', '$create_by', NOW())";
+	$sql = "INSERT INTO tasks (task_status, task_priority, task_deadline, task_title, create_by, create_at) VALUES ('$status', '$priority', '$deadline', '$title', '$create_by', NOW())";
 
 	if ($conn->query($sql) === TRUE) {
 	    header("Location: ../view/Home.php");

@@ -27,12 +27,11 @@
 </head>
 <body>
 	<h1>Registration</h1>
-	<form action="../Manipulators/UserManipulator.php" method="post">
+	<form action="../UsersManager/Registration.php" method="post">
 		<p><input type="text" placeholder="login" name="login" required /></p>
 		<p><input type="password" id="password" placeholder="password" name="password" required /></p>
 		<p><input type="password" id="confirm" placeholder="confirm" name="confirm" required /></p>
 		<button type="button" onclick="showPasswords()">Показать пароль</button>
-		<input type="hidden" name="userWants" value="reg">
 	    <input type="submit" value="Sign up">
 	</form>
 	

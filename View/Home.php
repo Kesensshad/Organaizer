@@ -4,8 +4,7 @@ if (isset($_POST['user']))
 	$_SESSION['user'] = $_POST['user'];
 if (!$_SESSION['user'])
 	header("Location: auth.php");
-require_once('../Manipulators/TaskManagment.php');
-
+require_once('../Manipulators/Managment.php');
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -16,7 +15,7 @@ require_once('../Manipulators/TaskManagment.php');
 	
 </head>
 <body><!-- Home page -->
-	<?php echo $_SESSION['user']; 
+	<?php echo '<h1>'.$_SESSION['user'].'</h1>'; 
 	echo "<form action='Home.php' method='post'>
 			<input type='hidden' name='user' value=''>
 			<input type='submit' value='Sign out'>
@@ -26,7 +25,6 @@ require_once('../Manipulators/TaskManagment.php');
 		<select size="1" name="status">
 			<option value="1">Finished</option>
 			<option selected value="2">Not finished</option>
-			<option value="3">Delayed</option>
 		</select>
 		<p><input type="text" placeholder="priority" name="priority" value=""></p>
 		<p><input type="date" placeholder="deadline" name="deadline" value="2023-12-12" id="calendarForTasks"></p>
@@ -41,14 +39,27 @@ require_once('../Manipulators/TaskManagment.php');
 		}
 		showCurrentDate();
 	</script>
-	<form action="../Manipulators/ExportTextFile.php" method="post">
+	<form action="../Manipulators/TextFileExport.php" method="post">
 		<input type="hidden" name="export">
 		<input type="submit" value="Export">
 	</form>
-	<form action="../Manipulators/ImportTextFile.php" method="post" enctype="multipart/form-data">
+	<form action="../Manipulators/TextFileImport.php" method="post" enctype="multipart/form-data">
 	    <input type="file" name="fileToImport">
 	    <input type="submit" name="import" value="Import">
 	</form>
-	<center><?php output_of_tasks(); ?></center>
+	<form action="ProjectCreate.php" method="post">
+		<button>Create project</button>
+	</form>
+	<?php 
+	output_of_projects();
+	?>
+	<center><?php 
+	
+	if (isset($_GET['project_id']))
+		output_of_tasks_by_project($_GET['project_id']);
+	else  
+		output_of_tasks();
+	?></center>
+
 </body>
 </html>

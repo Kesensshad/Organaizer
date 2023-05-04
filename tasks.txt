@@ -1,4 +1,6 @@
-Finished,	C,	2023-04-30,	Test
-Not finished,	A,	2023-04-28,	odapsfjmp
-Delayed,	,	2023-04-28,	ncalsfnlk
-Not finished,	,	2023-04-28,	anklfsna
+X (A) ADSSAFAS +Hello due: 2023-05-12 
+ 1 +asd +Hello due: 2023-05-03 
+ (X) 2 +asd +test +Hello due: 2023-05-03 
+X (A) 3 +asd +test +Hello due: 2023-05-03 
+ asfhziohso +Hello due: 2023-05-03 
+X (B) asdsafjkiosdjfsa +Hello due: 2023-05-20 

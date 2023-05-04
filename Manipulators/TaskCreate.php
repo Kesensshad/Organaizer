@@ -23,7 +23,7 @@ if (isset($_POST['status']) && isset($_POST['priority']) && isset($_POST['deadli
 	$sql = "INSERT INTO tasks (task_status, task_priority, task_deadline, task_title, create_by, create_at) VALUES ('$status', '$priority', '$deadline', '$title', '$create_by', NOW())";
 
 	if ($conn->query($sql) === TRUE) {
-	    header("Location: ../view/Home.php");
+	    header("Location: ../View/Home.php");
 	} else {
 	    echo "Error adding data: " . $conn->error;
 	}

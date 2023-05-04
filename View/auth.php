@@ -1,8 +1,9 @@
-<?php session_start(); 
-	if ($_GET['message'] == "Password")
-		echo "<script>alert('Incorrect password!');</script>";
-	if ($_GET['message'] == "Exists")
-		echo "<script>alert('User does not exist!');</script>";
+<?php 
+session_start(); 
+if ($_GET['message'] == "Password")
+	echo "<script>alert('Incorrect password!');</script>";
+if ($_GET['message'] == "Exists")
+	echo "<script>alert('User does not exist!');</script>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,11 +25,10 @@
 </head>
 <body>
 	<h1>Authorization</h1>
-	<form action="../Manipulators/UserManipulator.php" method="post">
+	<form action="../UsersManager/Authorization.php" method="post">
 		<p><input type="text" placeholder="login" name="login" required /></p>
 		<p><input type="password" id="password" placeholder="password" name="password" required /></p>
 		<button type="button" onclick="showPassword()">Показать пароль</button>
-		<input type="hidden" name="userWants" value="auth">
 	    <input type="submit" value="Sign up">
 	</form>
 	

@@ -1,12 +1,12 @@
 <?php
 
-if (isset($_POST['task_id'])){
+if (isset($_POST['task_id'])) {
 	$servername = "localhost";
 	$username = "root";
 	$password = "";
 	$dbname = "organaizer";
 
-	$conn = new mysqli($servername, $username, $password, $dbname);
+	$conn = mysqli_connect($servername, $username, $password, $dbname);
 
 	
 	if ($conn->connect_error) {
@@ -17,12 +17,9 @@ if (isset($_POST['task_id'])){
 
 	$sql = "DELETE FROM tasks WHERE task_id = $id";
 
-	if ($conn->query($sql) === TRUE) {
-	    header("Location: ../view/Home.php");
+	if (mysqli_query($conn, $sql)) {
+	    header("Location: ../View/Home.php");
 	} else {
 	    echo "Data deletion error: " . $conn->error;
 	}
-
-	
-	$conn->close();
 }
